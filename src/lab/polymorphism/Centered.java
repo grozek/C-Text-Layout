@@ -17,9 +17,10 @@ public class Centered implements TextBlock{
    * new return string, so that is centered within the given width
    */
   public String row(int i) throws Exception {
-    int holder = this.width/2;
-    String spaces = TBUtils.spaces(holder);
-    return spaces.concat(this.block.row(i));
+    String spaces = TBUtils.spaces(this.width/2);
+    String tempString = spaces.concat(this.block.row(i));
+    TextBlock newBlock = new TextLine(tempString);
+    return tempString;
   }
 
   public int height() {

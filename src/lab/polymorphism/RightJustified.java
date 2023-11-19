@@ -17,7 +17,9 @@ public class RightJustified implements TextBlock{
 
   public String row(int i) throws Exception {
     String spaces = TBUtils.spaces(this.width);
-    return spaces.concat(this.block.row(i));
+    String tempString = spaces.concat(this.block.row(i));
+    TextBlock newBlock = new TextLine(tempString);
+    return tempString;
   }
 
   public int height() {
