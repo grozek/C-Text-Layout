@@ -16,7 +16,6 @@ public class TBExpt {
   public static void main(String[] args) throws Exception {
     // Prepare for input and output
     PrintWriter pen = new PrintWriter(System.out, true);
-
     // Create a block to use
     TextBlock block = new TextLine("Hello");
     TextBlock block2 = new TextLine("GoodBye");
@@ -29,32 +28,19 @@ public class TBExpt {
     Truncated trun = new Truncated (box3, 5);
     Centered centr = new Centered (box3, 10);
     RightJustified rjust = new RightJustified (box3, 10);
-    HorizontallyFlipped hflip = new HorizontallyFlipped (box3, 10);
+    HorizontallyFlipped hflip = new HorizontallyFlipped (box3);
     //TBUtils.print(pen, box3);
     //TBUtils.print(pen, trun);
-    TBUtils.print(pen, centr);
-    TBUtils.print(pen, rjust);
-    //TBUtils.print(pen, hflip);
-    //box.row(1);
-    //box2.row(0);
-    //box3.row(1);
-    
-
-    
-    // Print out the block
-   /* TBUtils.print(pen, block);
-    TBUtils.print(pen, box);
-    TBUtils.print(pen, box2);
-    TBUtils.print(pen, box3); 
-    
-    VComposition Vbox = new VComposition(block, block2);
-    BoxedBlock Vbox1 = new BoxedBlock(Vbox);
-    Vbox.row(1);
-    TBUtils.print(pen, Vbox1);
-
-    VComposition HelloGoodbye = new VComposition(box, box3);
-    TBUtils.print(pen, HelloGoodbye);
-
+    //TBUtils.print(pen, centr);
+    //TBUtils.print(pen, rjust);
+    TBUtils.print(pen, hflip);
+    //TBUtils.print(pen, vflip);
+    VComposition Vbox = new VComposition(box, box3);
+    TBUtils.print(pen, Vbox);
+    VerticallyFlipped vflip = new VerticallyFlipped (Vbox);
+    TBUtils.print(pen, vflip);
+    //TBUtils.equal(Vbox1, vflip);
+    /* 
     HComposition right = new HComposition(box, block2);
     TBUtils.print(pen, right);
 

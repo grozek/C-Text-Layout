@@ -1,6 +1,14 @@
 package lab.polymorphism;
 
 import java.io.PrintWriter;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
+
+
 
 /**
  * Utilities for TextBlocks.
@@ -69,4 +77,33 @@ public class TBUtils {
     return lotsOfSpaces.substring(0, len);
   } // spaces(int)
 
-} // class TBUtils
+
+  static Boolean equal(TextBlock t1, TextBlock t2) throws Exception {
+    int t1width = t1.width();
+    if (t1width == t2.width()) {
+      for (int i = 0; i < t1width; i++) {
+        if (!t1.row(i).equals(t2.row(i))) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }//equal(TextBlock, TextBlock)
+
+
+  static Boolean eqv(TextBlock t1, TextBlock t2) throws Exception {
+    if (t1.equals(t2)) {
+      return true;
+    }
+    return false;
+  }//eqv(TextBlock, TextBlock)
+
+  static Boolean eq(TextBlock t1, TextBlock t2) throws Exception {
+    if (t1 == t2) {
+      return true;
+    }
+    return false;
+  }//eq(TextBlock, TextBlock)
+
+}// class TBUtils
