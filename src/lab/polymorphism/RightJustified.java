@@ -1,3 +1,9 @@
+/*  Author: Gabriela Roznawska
+ *  November 2023
+ *  Text Layout mini-project
+ *  Created with help of online resources provided by Sam Rebelsky, as well as his
+ *  personal support
+ */
 
 package lab.polymorphism;
 
@@ -9,7 +15,6 @@ public class RightJustified implements TextBlock{
   TextBlock block;
   int width;
 
-
   public RightJustified(TextBlock blockTemp, int newWidth) {
     this.block = blockTemp;
     this.width = newWidth;
@@ -19,6 +24,7 @@ public class RightJustified implements TextBlock{
     String spaces = TBUtils.spaces(this.width);
     String tempString = spaces.concat(this.block.row(i));
     TextBlock newBlock = new TextLine(tempString);
+    this.block = newBlock;
     return tempString;
   }
 
@@ -30,6 +36,17 @@ public class RightJustified implements TextBlock{
     return this.width;
   }
 
-
+  public boolean eqv(TextBlock other) throws Exception {
+    if (! (other instanceof RightJustified)){
+      return false;
+    }
+    if (! (other.width() == this.width())){
+      return false;
+    }
+    if (! (TBUtils.eqv(this.block, ((RightJustified) other).block))){
+      return false;
+    }
+    return true;
+  }//eqv (TextBlock)
 } //Truncated
 

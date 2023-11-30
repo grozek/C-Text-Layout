@@ -8,14 +8,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
-
-
 /**
  * Utilities for TextBlocks.
  * 
  * @author Samuel A. Rebelsky
  * @version 1.3 of September 2014
+ * 
+ *  Additions in code: Gabriela Roznawska
+ *  Methods: (equal), (eqv) and (eq)
+ *  November 2023
+ *  Text Layout mini-project
+ *  Created with help of online resources provided by Sam Rebelsky, as well as his
+ *  personal support
  */
+ 
 public class TBUtils {
   // +--------------+------------------------------------------------------
   // | Class Fields |
@@ -39,9 +45,6 @@ public class TBUtils {
    * Build a sequence of dashes of a specified length.
    */
   static String dashes(int len) {
-    // Note: This strategy probably represents an overkill in
-    // attempts at efficiency.
-    // Make sure the collection of dashes is big enough
     while (lotsOfDashes.length() < len) {
       lotsOfDashes = lotsOfDashes.concat(lotsOfDashes);
     } // while
@@ -54,8 +57,6 @@ public class TBUtils {
    */
   public static void print(PrintWriter pen, TextBlock block) {
     for (int i = 0; i < block.height(); i++) {
-      // Even though we only call block.row with a valid i,
-      // we need to put the call in a try/catch block.
       try {
         pen.println(block.row(i));
       } catch (Exception e) {
@@ -68,8 +69,6 @@ public class TBUtils {
    * Build a sequence of spaces of a specified length.
    */
   static String spaces(int len) {
-    // As with dashes, this is probably overkill.
-    // Make sure the collection of dashes is big enough
     while (lotsOfSpaces.length() < len) {
       lotsOfSpaces = lotsOfSpaces.concat(lotsOfSpaces);
     } // while
@@ -77,11 +76,13 @@ public class TBUtils {
     return lotsOfSpaces.substring(0, len);
   } // spaces(int)
 
-
+  /*
+   * Two textblocks are equal if they contain the same lines.
+  */ 
   static Boolean equal(TextBlock t1, TextBlock t2) throws Exception {
-    int t1width = t1.width();
-    if (t1width == t2.width()) {
-      for (int i = 0; i < t1width; i++) {
+    int t1height= t1.height();
+    if (t1height == t2.height()) {
+      for (int i = 0; i < t1.height(); i++) {
         if (!t1.row(i).equals(t2.row(i))) {
           return false;
         }
@@ -92,13 +93,17 @@ public class TBUtils {
   }//equal(TextBlock, TextBlock)
 
 
+  /*
+   * Two textblocks are equal if they were built in the same way.
+   */
   static Boolean eqv(TextBlock t1, TextBlock t2) throws Exception {
-    if (t1.equals(t2)) {
-      return true;
-    }
-    return false;
+    return eqv(t1, t2);
   }//eqv(TextBlock, TextBlock)
 
+
+  /*
+   * Two textblocks are equal if they occupy the same memory location.
+   */
   static Boolean eq(TextBlock t1, TextBlock t2) throws Exception {
     if (t1 == t2) {
       return true;

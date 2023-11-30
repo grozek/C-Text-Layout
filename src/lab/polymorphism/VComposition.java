@@ -87,4 +87,15 @@ public class VComposition implements TextBlock {
     return Math.max(this.top.width(), this.bottom.width());
   } // width()
 
+
+  public boolean eqv(TextBlock top, TextBlock bottom) throws Exception {
+    if (! ((top instanceof VComposition)&&(bottom instanceof VComposition))){
+      return false;
+    }
+    if (! ((TBUtils.eqv(this.top, top))&&(TBUtils.eqv(this.bottom, bottom)))){
+      return false;
+    }
+    return true;
+  }//eqv (TextBlock)
+
 } // class VComposition

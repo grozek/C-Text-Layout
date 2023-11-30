@@ -7,23 +7,29 @@
 
 package lab.polymorphism;
 
-
-public class Truncated implements TextBlock{
-
+public class Original implements TextBlock{
+  
   TextBlock block;
   int width;
 
-  public Truncated(TextBlock blockTemp, int newWidth) {
+  public Original(TextBlock blockTemp) {
     this.block = blockTemp;
-    this.width = newWidth;
   }//Truncated(TextBlock, int)
 
+  /*
+   * Modifies the line so that the string is now a cool-sounding all cool-looking
+   * text, that imitates unconcious encription pracitises of young teens
+   * creating their first username in an online game
+   */
   public String row(int i) throws Exception {
-    String tempOutput = this.block.row(i).substring(0, this.width);
-    TextBlock newBlock = new TextLine(tempOutput);
-    this.block = newBlock;
-    return tempOutput;
-  }//row
+    String tempOut = this.block.row(i);
+    tempOut = tempOut.replace('a', '4');
+    tempOut = tempOut.replace('i', '1');
+    tempOut = tempOut.replace('e', '3');
+    tempOut = tempOut.replace('o', '0');
+    this.block = new TextLine(tempOut);
+    return tempOut;
+  }//row(int)
 
   public int height() {
     return this.block.height();
@@ -38,19 +44,21 @@ public class Truncated implements TextBlock{
    * Testing if the two blocks were actually build the same way.
    */
   public boolean eqv(TextBlock other) throws Exception {
-    if (! (other instanceof Truncated)){
+    if (! (other instanceof Original)){
       return false;
     }
-    
     if (! (other.width() == this.width())){
       return false;
     }
-
-    if (! (TBUtils.eqv(this.block, ((Truncated) other).block))){
+    if (! (TBUtils.eqv(this.block, ((Original) other).block))){
       return false;
     }
     return true;
   }//eqv (TextBlock)
-} //Truncated
+} //Original
+
+
+
+
 
 

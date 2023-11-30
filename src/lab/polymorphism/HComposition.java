@@ -86,4 +86,16 @@ public class HComposition implements TextBlock {
     return this.left.width() + this.right.width();
   } // width()
 
+  
+  public boolean eqv(TextBlock left, TextBlock right) throws Exception {
+    if (! ((right instanceof HComposition)&&(left instanceof HComposition))){
+      return false;
+    }
+    if (! ((TBUtils.eqv(this.left, left))&&(TBUtils.eqv(this.right, right)))){
+      return false;
+    }
+    return true;
+  }//eqv (TextBlock)
+  
+
 } // class HComposition
