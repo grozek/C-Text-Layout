@@ -88,11 +88,11 @@ public class VComposition implements TextBlock {
   } // width()
 
 
-  public boolean eqv(TextBlock top, TextBlock bottom) throws Exception {
-    if (! ((top instanceof VComposition)&&(bottom instanceof VComposition))){
+  public boolean eqv(TextBlock other) {
+    if (! ((other instanceof VComposition))){
       return false;
     }
-    if (! ((TBUtils.eqv(this.top, top))&&(TBUtils.eqv(this.bottom, bottom)))){
+    if (! ((TBUtils.eqv(this.top, ((VComposition)other).top))&&(TBUtils.eqv(this.bottom, ((VComposition)other).bottom)))){
       return false;
     }
     return true;

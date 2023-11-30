@@ -87,11 +87,11 @@ public class HComposition implements TextBlock {
   } // width()
 
   
-  public boolean eqv(TextBlock left, TextBlock right) throws Exception {
-    if (! ((right instanceof HComposition)&&(left instanceof HComposition))){
+  public boolean eqv(TextBlock other) {
+    if (! ((other instanceof HComposition))){
       return false;
     }
-    if (! ((TBUtils.eqv(this.left, left))&&(TBUtils.eqv(this.right, right)))){
+    if (! ((TBUtils.eqv(this.left, ((HComposition)other).left))&&(TBUtils.eqv(this.right, ((HComposition)other).right)))){
       return false;
     }
     return true;

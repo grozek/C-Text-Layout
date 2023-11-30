@@ -42,15 +42,20 @@ public class Centered implements TextBlock{
    * Two textblocks are equal if they were built in the same way.
    * Testing if the two blocks were actually build the same way.
    */
-  public boolean eqv(TextBlock other) throws Exception {
+  public boolean eqv(TextBlock other) {
     if (! (other instanceof Centered)){
       return false;
     }
     if (! (other.width() == this.width())){
       return false;
     }
-    if (! (TBUtils.eqv(this.block, ((Centered) other).block))){
-      return false;
+    try {
+      if (! (TBUtils.eqv(this.block, ((Centered) other).block))){
+        return false;
+      }
+    } catch (Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
     return true;
   }//eqv (TextBlock)

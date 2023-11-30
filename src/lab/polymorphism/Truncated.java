@@ -37,7 +37,7 @@ public class Truncated implements TextBlock{
    * Two textblocks are equal if they were built in the same way.
    * Testing if the two blocks were actually build the same way.
    */
-  public boolean eqv(TextBlock other) throws Exception {
+  public boolean eqv(TextBlock other) {
     if (! (other instanceof Truncated)){
       return false;
     }

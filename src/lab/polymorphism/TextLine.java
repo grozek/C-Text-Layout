@@ -58,4 +58,15 @@ public class TextLine implements TextBlock {
     return this.line.length();
   } // width()
 
+  @Override
+  public boolean eqv(TextBlock other) {
+    if (! (other instanceof TextLine)){
+      return false;
+    }
+    if (! (this.line.equals(((TextLine) other).line))){
+      return false;
+    }
+    return true;
+  }//eqv (TextBlock)
+
 } // class TextLine

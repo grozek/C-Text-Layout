@@ -14,14 +14,11 @@ import org.junit.jupiter.api.Test;
  * @author Samuel A. Rebelsky
  * @version 1.3 of September 2014
  * 
- *  Additions in code: Gabriela Roznawska
- *  Methods: (equal), (eqv) and (eq)
- *  November 2023
- *  Text Layout mini-project
- *  Created with help of online resources provided by Sam Rebelsky, as well as his
- *  personal support
+ *          Additions in code: Gabriela Roznawska Methods: (equal), (eqv) and (eq) November 2023
+ *          Text Layout mini-project Created with help of online resources provided by Sam Rebelsky,
+ *          as well as his personal support
  */
- 
+
 public class TBUtils {
   // +--------------+------------------------------------------------------
   // | Class Fields |
@@ -76,38 +73,42 @@ public class TBUtils {
     return lotsOfSpaces.substring(0, len);
   } // spaces(int)
 
-  /*
+  /**
    * Two textblocks are equal if they contain the same lines.
-  */ 
-  static Boolean equal(TextBlock t1, TextBlock t2) throws Exception {
-    int t1height= t1.height();
+   */
+  static boolean equal(TextBlock t1, TextBlock t2) {
+    int t1height = t1.height();
     if (t1height == t2.height()) {
       for (int i = 0; i < t1.height(); i++) {
-        if (!t1.row(i).equals(t2.row(i))) {
+        try {
+          if (!t1.row(i).equals(t2.row(i))) {
+            return false;
+          }
+        } catch (Exception e) {
           return false;
         }
       }
       return true;
     }
     return false;
-  }//equal(TextBlock, TextBlock)
+  }// equal(TextBlock, TextBlock)
 
 
-  /*
+  /**
    * Two textblocks are equal if they were built in the same way.
    */
-  static Boolean eqv(TextBlock t1, TextBlock t2) throws Exception {
-    return eqv(t1, t2);
-  }//eqv(TextBlock, TextBlock)
+  static Boolean eqv(TextBlock t1, TextBlock t2) {
+    return t1.eqv(t2);
+  }// eqv(TextBlock, TextBlock)
 
 
-  /*
+  /**
    * Two textblocks are equal if they occupy the same memory location.
    */
-  static Boolean eq(TextBlock t1, TextBlock t2) throws Exception {
+  static Boolean eq(TextBlock t1, TextBlock t2) {
     if (t1 == t2) {
       return true;
     }
     return false;
-  }//eq(TextBlock, TextBlock)
+  }// eq(TextBlock, TextBlock)
 }// class TBUtils

@@ -31,4 +31,9 @@ public interface TextBlock {
    */
   public int width();
 
+  /**
+   * Two textblocks are equal if they were built in the same way.
+   */
+  public boolean eqv(TextBlock t2);
+
 } // interface TextBlock

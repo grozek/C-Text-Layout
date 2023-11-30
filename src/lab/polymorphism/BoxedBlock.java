@@ -68,4 +68,19 @@ public class BoxedBlock implements TextBlock {
     return 2 + this.contents.width();
   } // width()
 
+
+  /*
+   * Two textblocks are equal if they were built in the same way.
+   * Testing if the two blocks were actually build the same way.
+   */
+  public boolean eqv(TextBlock other) {
+    if (! (other instanceof BoxedBlock)){
+      return false;
+    }
+
+    if (! (TBUtils.eqv(this.contents, ((BoxedBlock) other).contents))){
+      return false;
+    }
+    return true;
+  }//eqv (TextBlock)
 } // class BoxedBlock

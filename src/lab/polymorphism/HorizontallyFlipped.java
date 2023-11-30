@@ -35,7 +35,7 @@ public class HorizontallyFlipped implements TextBlock{
     return this.width;
   }
 
-  public boolean eqv(TextBlock other) throws Exception {
+  public boolean eqv(TextBlock other) {
     if (! (other instanceof HorizontallyFlipped)){
       return false;
     }
