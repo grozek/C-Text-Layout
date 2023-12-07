@@ -23,10 +23,14 @@ public class Centered implements TextBlock{
    * new return string, so that is centered within the given width
    */
   public String row(int i) throws Exception {
-    String spaces = TBUtils.spaces(this.width/2);
-    String tempString = spaces.concat(this.block.row(i));
-    TextBlock newBlock = new TextLine(tempString);
-    this.block = newBlock;
+    String tempString = "";
+    if (this.width >= this.block.width()){
+      String spaces = TBUtils.spaces(this.width-this.block.width()/2);
+      tempString = spaces.concat(this.block.row(i).concat(spaces));
+    }
+    else if (this.width < this.block.width()){
+    tempString = this.block.row(i).substring(0, this.width);
+    }
     return tempString;
   }
 

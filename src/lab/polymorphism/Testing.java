@@ -37,7 +37,7 @@ public class Testing {
    * Testing the class VerticallyFlipped
    */
   @Test
-  public void VerticallyFlippedTests () throws Exception{
+  public void VerticallyFlippedTests () throws Exception {
     //creating two blocks that will be stacked on top of each other
     TextBlock block = new TextLine("Hello");
     TextBlock block2 = new TextLine("GoodBye");
@@ -66,11 +66,10 @@ public class Testing {
    * Using Truncated as a parameter for Centered 
    */
   @Test
-  public void CenteredTests() throws Exception{
-    TextBlock block = new TextLine("Hello");
+  public void CenteredTests() throws Exception {
+    TextBlock block = new BoxedBlock(new TextLine("Hello"));
     //creating objects used as a comparison to the object that boxing methods are performed on
-    Truncated trunBlockComparedTo = new Truncated(block, 3);
-    String stringComparedTo = TBUtils.spaces(5).concat(trunBlockComparedTo.row(0));
+    String stringComparedTo = TBUtils.spaces(5).concat("Hel");
     TextBlock textBlockComparedTo = new TextLine(stringComparedTo);
     //truncating and then centering the block
     Truncated trunBlock = new Truncated (block, 3);
@@ -81,7 +80,7 @@ public class Testing {
     assertFalse(TBUtils.eq(centeredBlock, textBlockComparedTo));
     //TextBlocks made differently are not equal
     assertFalse(TBUtils.eqv(centeredBlock, textBlockComparedTo));
-  }
+  }//CenteredTests()
 
   /**
    * Testing the class HorizontallyFlipped
@@ -89,7 +88,7 @@ public class Testing {
    * @throws Exception
    */
   @Test
-  public void HorizontallyFlippedTests () throws Exception{
+  public void HorizontallyFlippedTests () throws Exception {
     //creating two blocks, one standard, one manually reversed
     TextBlock block = new TextLine("HelloGrader");
     TextBlock blockReverse = new TextLine("redarGolleH");
@@ -150,7 +149,7 @@ public class Testing {
   public void TruncatedTests() throws Exception{
     //creating a basic line
     TextBlock block = new TextLine("Sloths are cool");
-    TextBlock block2 = new TextLine("looc rea shtolS");
+    TextBlock block2 = new TextLine("looc era shtolS");
     //creating boxe with the block
     //BoxedBlock box = new BoxedBlock(block);
     //fliping non-reversed block (reversing it)

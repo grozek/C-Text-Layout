@@ -20,8 +20,6 @@ public class Truncated implements TextBlock{
 
   public String row(int i) throws Exception {
     String tempOutput = this.block.row(i).substring(0, this.width);
-    TextBlock newBlock = new TextLine(tempOutput);
-    this.block = newBlock;
     return tempOutput;
   }//row
 
