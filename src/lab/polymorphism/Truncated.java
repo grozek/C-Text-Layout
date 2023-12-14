@@ -13,6 +13,10 @@ public class Truncated implements TextBlock{
   TextBlock block;
   int width;
 
+  /**
+   * 
+   * Truncates input block  to given witdth
+   */
   public Truncated(TextBlock blockTemp, int newWidth) {
     this.block = blockTemp;
     this.width = newWidth;
@@ -31,7 +35,7 @@ public class Truncated implements TextBlock{
     return this.width;
   }//width
 
-  /*
+  /**
    * Two textblocks are equal if they were built in the same way.
    * Testing if the two blocks were actually build the same way.
    */

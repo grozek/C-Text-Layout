@@ -25,7 +25,7 @@ public class Centered implements TextBlock{
   public String row(int i) throws Exception {
     String tempString = "";
     if (this.width >= this.block.width()){
-      String spaces = TBUtils.spaces(this.width-this.block.width()/2);
+      String spaces = TBUtils.spaces((this.width-this.block.width())/2);
       tempString = spaces.concat(this.block.row(i).concat(spaces));
     }
     else if (this.width < this.block.width()){

@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import java.io.PrintWriter;
 
 
 /**
@@ -23,10 +24,10 @@ import static org.junit.jupiter.api.Assertions.fail;
  * VerticallyFlipped    !  ~with~      
  * HorizontallyFlipped !   ~with~      * Original !
  * Centered             !  ~with~      * Truncated !
- * Truncated              ~with~      * HorizontallyFlipped
+ * Truncated            !  ~with~      * HorizontallyFlipped !
  * RightJustified        ! ~with~      * Centered !
  * Original               ~with~      * VerticallyFlipped
- * 
+ *                                      RightJustified
  * So that the functionality of the methods is ensured
  * 
  * 
@@ -59,20 +60,20 @@ public class Testing {
     assertTrue(TBUtils.eqv(newVflip, vflip));
     //seemingly the same, blocks built differently are not equivalent
     assertFalse(TBUtils.eqv(vboxFlipped, vflip));
+  } // VerticallyFlippedTests()
 
-  }
-  /*
+  /**
    * Testing the class Centered
    * Using Truncated as a parameter for Centered 
    */
   @Test
   public void CenteredTests() throws Exception {
-    TextBlock block = new BoxedBlock(new TextLine("Hello"));
+    TextBlock block = new TextLine("Hello");
     //creating objects used as a comparison to the object that boxing methods are performed on
-    String stringComparedTo = TBUtils.spaces(5).concat("Hel");
+    String stringComparedTo = TBUtils.spaces(3).concat("Hell").concat(TBUtils.spaces(3));
     TextBlock textBlockComparedTo = new TextLine(stringComparedTo);
     //truncating and then centering the block
-    Truncated trunBlock = new Truncated (block, 3);
+    Truncated trunBlock = new Truncated (block, 4);
     Centered centeredBlock = new Centered (trunBlock, 10);
     //Truncated centered block with the same textline should be equal to one another
     assertTrue(TBUtils.equal(centeredBlock, textBlockComparedTo));
@@ -80,7 +81,7 @@ public class Testing {
     assertFalse(TBUtils.eq(centeredBlock, textBlockComparedTo));
     //TextBlocks made differently are not equal
     assertFalse(TBUtils.eqv(centeredBlock, textBlockComparedTo));
-  }//CenteredTests()
+  } // Centered Tests()
 
   /**
    * Testing the class HorizontallyFlipped
@@ -113,7 +114,7 @@ public class Testing {
     Original original = new Original (blockReverse);
     //two lines, one encoded, one not, are not the same
     assertFalse(TBUtils.equal(original, blockReverse));
-  }
+  } // HorizontallyFlippedTests()
 
   /**
    * Testing the class RightJustified
@@ -122,16 +123,16 @@ public class Testing {
   @Test
   public void RightJustifiedTests() throws Exception{
     //creating objects used as a comparison to the object that boxing methods are performed on
-    TextBlock block = new TextLine("Anteaters the ant-eating animals");
+    TextBlock block = new TextLine("Ants");
     //Manualy performing Centered, first making a string, then using it for textBlock
-    String stringComparedTo = TBUtils.spaces(5).concat(block.row(0));
+    String stringComparedTo = TBUtils.spaces(8).concat(block.row(0)).concat(TBUtils.spaces(8));
     TextBlock textBlockComparedTo = new TextLine(stringComparedTo);
     //Manualy performing RightJustified, first adding it to string, then updating textBlock
-    stringComparedTo = TBUtils.spaces(5).concat(stringComparedTo);
+    stringComparedTo = TBUtils.spaces(8).concat(stringComparedTo);
     textBlockComparedTo = new TextLine(stringComparedTo);
     //centering and then truncating the block
-    Centered centeredBlock = new Centered (block, 10);
-    RightJustified rightJustifiedBlock = new RightJustified(centeredBlock, 5);
+    Centered centeredBlock = new Centered (block, 20);
+    RightJustified rightJustifiedBlock = new RightJustified(centeredBlock, 28);
     
     //RightJustified centered block  with the same textline should be equal to one another
     assertTrue(TBUtils.equal(rightJustifiedBlock, textBlockComparedTo));
@@ -139,24 +140,20 @@ public class Testing {
     assertFalse(TBUtils.eq(centeredBlock, textBlockComparedTo));
     //TextBlocks made differently are not equal
     assertFalse(TBUtils.eqv(centeredBlock, textBlockComparedTo));
-  }
+  } // RightJustifiedTests()
 
-  /*
+  /**
    * Testing the class Centered
    * Using Truncated as a parameter for Centered 
    */
   @Test
-  public void TruncatedTests() throws Exception{
+  public void TruncatedTests() throws Exception {
     //creating a basic line
     TextBlock block = new TextLine("Sloths are cool");
     TextBlock block2 = new TextLine("looc era shtolS");
-    //creating boxe with the block
-    //BoxedBlock box = new BoxedBlock(block);
-    //fliping non-reversed block (reversing it)
     HorizontallyFlipped hflip = new HorizontallyFlipped (block);
     TextBlock blockTruncated = new TextLine (block2.row(0).substring(0, 9));
     Truncated trunFlip = new Truncated (hflip, 9);
-
 
     //Truncated centered block with the same textline should be equal to one another
     assertTrue(TBUtils.equal(trunFlip, blockTruncated));
@@ -164,7 +161,27 @@ public class Testing {
     assertFalse(TBUtils.eq(trunFlip, blockTruncated));
     //TextBlocks made differently are not equal
     assertFalse(TBUtils.eqv(trunFlip, blockTruncated));
-  }
+  } // TruncatedTests()
 
 
-}
+
+  @Test
+  public void OriginalTests() throws Exception {
+    //creating basic blocks
+    TextBlock block = new TextLine("Ameba");
+    TextBlock block2 = new TextLine("Am3b4");
+    //creating vcomposition and verticallyflipped
+    VComposition vbox = new VComposition(block, block2);
+    VerticallyFlipped vflip = new VerticallyFlipped (vbox);
+    Original original = new Original (block);
+    VComposition vboxWithOriginal = new VComposition (block, original);
+    VerticallyFlipped vflipWithOriginal = new VerticallyFlipped (vboxWithOriginal);
+    VerticallyFlipped vflipWithOriginalCopy = vflipWithOriginal;
+    // two textlines with the same lines have are equal
+    assertTrue(TBUtils.equal(original, block2));
+    // two blocks with the same lines but different memory locations should not be eq
+    assertFalse(TBUtils.eq(vbox, vboxWithOriginal));    
+    // two blocks made the same way should be eqv
+    assertTrue(TBUtils.eqv(vflipWithOriginal, vflipWithOriginalCopy));
+  } // OriginalTests ()
+} // Testing class

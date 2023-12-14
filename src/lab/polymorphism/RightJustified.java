@@ -7,18 +7,21 @@
 
 package lab.polymorphism;
 
-/* given a text block and a width, 
+/**
+ *  given a text block and a width, 
  * builds a new block that right-justifies the input block within that width.
  */
 public class RightJustified implements TextBlock{
 
+  // fields
   TextBlock block;
   int width;
 
+  // constructor
   public RightJustified(TextBlock blockTemp, int newWidth) {
     this.block = blockTemp;
     this.width = newWidth;
-  }
+  }// RightJustified (Textblock, int)
 
   public String row(int i) throws Exception {
     String tempString = "";
@@ -30,15 +33,15 @@ public class RightJustified implements TextBlock{
       tempString = this.block.row(i).substring(0, this.width);
     }
     return tempString;
-  }
+  }// row
 
   public int height() {
     return this.block.height();
-  }
+  }// height
 
   public int width() {
     return this.width;
-  }
+  }// width
 
   public boolean eqv(TextBlock other) {
     if (! (other instanceof RightJustified)){
@@ -51,6 +54,6 @@ public class RightJustified implements TextBlock{
       return false;
     }
     return true;
-  }//eqv (TextBlock)
-} //Truncated
+  }// eqv (TextBlock)
+} // RightJustified
 

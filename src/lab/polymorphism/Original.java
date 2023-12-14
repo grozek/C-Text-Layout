@@ -1,4 +1,5 @@
-/*  Author: Gabriela Roznawska
+/**  
+ * Author: Gabriela Roznawska
  *  November 2023
  *  Text Layout mini-project
  *  Created with help of online resources provided by Sam Rebelsky, as well as his
@@ -14,9 +15,9 @@ public class Original implements TextBlock{
 
   public Original(TextBlock blockTemp) {
     this.block = blockTemp;
-  }//Truncated(TextBlock, int)
+  }//Original(TextBlock, int)
 
-  /*
+  /**
    * Modifies the line so that the string is now a cool-sounding all cool-looking
    * text, that imitates unconcious encription pracitises of young teens
    * creating their first username in an online game
@@ -39,7 +40,7 @@ public class Original implements TextBlock{
     return this.width;
   }//width
 
-  /*
+  /**
    * Two textblocks are equal if they were built in the same way.
    * Testing if the two blocks were actually build the same way.
    */
