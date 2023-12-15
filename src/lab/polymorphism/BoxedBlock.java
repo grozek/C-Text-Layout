@@ -5,6 +5,7 @@ package lab.polymorphism;
  * A text block surrounded by a box.
  *
  * @author Samuel A. Rebelsky
+ *  With additions of Gabriela Roznawska
  * @version 1.2 of February 2019
  */
 public class BoxedBlock implements TextBlock {
@@ -40,18 +41,15 @@ public class BoxedBlock implements TextBlock {
    */
   public String row(int i) throws Exception {
     int h = this.contents.height();
-    // The top and bottom of the box
     if ((i == 0) || (i == h + 1)) {
       return "+" + TBUtils.dashes(this.contents.width()) + "+";
-    }
-    // Stuff within the box
+    } // if
     else if ((i > 0) && (i <= h)) {
       return "|" + this.contents.row(i - 1) + "|";
-    }
-    // Everything else
+    } // else if
     else {
       throw new Exception("Invalid row " + i);
-    }
+    } // else
   } // row(int)
 
   /**
@@ -76,11 +74,11 @@ public class BoxedBlock implements TextBlock {
   public boolean eqv(TextBlock other) {
     if (! (other instanceof BoxedBlock)){
       return false;
-    }
+    } // if
 
     if (! (TBUtils.eqv(this.contents, ((BoxedBlock) other).contents))){
       return false;
-    }
+    } // if
     return true;
   }//eqv (TextBlock)
 } // class BoxedBlock

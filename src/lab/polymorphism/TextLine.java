@@ -3,7 +3,7 @@ package lab.polymorphism;
 /**
  * One line of text.
  * 
- * @author Samuel A. Rebelsky
+ * @author Samuel A. Rebelsky With minor implementation (eqv) by Gabriela Roznawska
  * @version 1.3 of February 2019
  */
 public class TextLine implements TextBlock {
@@ -58,15 +58,19 @@ public class TextLine implements TextBlock {
     return this.line.length();
   } // width()
 
+  /**
+   * Two textblocks are equal if they were built in the same way. Testing if the two blocks were
+   * actually build the same way.
+   */
   @Override
   public boolean eqv(TextBlock other) {
-    if (! (other instanceof TextLine)){
+    if (!(other instanceof TextLine)) {
       return false;
-    }
-    if (! (this.line.equals(((TextLine) other).line))){
+    } // if
+    if (!(this.line.equals(((TextLine) other).line))) {
       return false;
-    }
+    } // if
     return true;
-  }//eqv (TextBlock)
+  }// eqv (TextBlock)
 
 } // class TextLine

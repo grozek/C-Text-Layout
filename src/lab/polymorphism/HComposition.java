@@ -4,6 +4,7 @@ package lab.polymorphism;
  * The horizontal composition of two text blocks.
  * 
  * @author Samuel A. Rebelsky
+ * With additions from Gabriela Roznawska
  * @version 1.3 of February 2019
  */
 public class HComposition implements TextBlock {
@@ -58,12 +59,12 @@ public class HComposition implements TextBlock {
       result = this.left.row(i);
     } else {
       result = TBUtils.spaces(this.left.width());
-    }
+    } // if
     if (i < rh) {
       result = result.concat(this.right.row(i));
     } else {
       result = result.concat(TBUtils.spaces(this.right.width()));
-    }
+    } // if
 
     return result;
   } // row(int)
@@ -86,16 +87,18 @@ public class HComposition implements TextBlock {
     return this.left.width() + this.right.width();
   } // width()
 
-  
+  /*
+   * Two textblocks are equal if they were built in the same way. Testing if the two blocks were
+   * actually build the same way.
+   */
   public boolean eqv(TextBlock other) {
-    if (! ((other instanceof HComposition))){
+    if (!((other instanceof HComposition))) {
       return false;
-    }
-    if (! ((TBUtils.eqv(this.left, ((HComposition)other).left))&&(TBUtils.eqv(this.right, ((HComposition)other).right)))){
+    } // if
+    if (!((TBUtils.eqv(this.left, ((HComposition) other).left))
+        && (TBUtils.eqv(this.right, ((HComposition) other).right)))) {
       return false;
-    }
+    } // if
     return true;
-  }//eqv (TextBlock)
-  
-
+  }// eqv (TextBlock)
 } // class HComposition

@@ -83,13 +83,13 @@ public class TBUtils {
         try {
           if (!t1.row(i).equals(t2.row(i))) {
             return false;
-          }
+          } // if
         } catch (Exception e) {
           return false;
-        }
+        } // catch
       }
       return true;
-    }
+    } // if
     return false;
   }// equal(TextBlock, TextBlock)
 
@@ -108,7 +108,7 @@ public class TBUtils {
   static Boolean eq(TextBlock t1, TextBlock t2) {
     if (t1 == t2) {
       return true;
-    }
+    } // if
     return false;
   }// eq(TextBlock, TextBlock)
 }// class TBUtils
