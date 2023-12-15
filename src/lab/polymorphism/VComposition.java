@@ -3,7 +3,7 @@ package lab.polymorphism;
 /**
  * The vertical composition of two text blocks.
  * 
- * @author Samuel A. Rebelsky
+ * @author Samuel A. Rebelsky With addition of (eqv) by Gabriela Roznawska
  * @version 1.2 of February 2019
  */
 public class VComposition implements TextBlock {
@@ -87,15 +87,19 @@ public class VComposition implements TextBlock {
     return Math.max(this.top.width(), this.bottom.width());
   } // width()
 
-
+  /**
+   * Two textblocks are equal if they were built in the same way. Testing if the two blocks were
+   * actually build the same way.
+   */
   public boolean eqv(TextBlock other) {
-    if (! ((other instanceof VComposition))){
+    if (!((other instanceof VComposition))) {
       return false;
-    }
-    if (! ((TBUtils.eqv(this.top, ((VComposition)other).top))&&(TBUtils.eqv(this.bottom, ((VComposition)other).bottom)))){
+    } // if
+    if (!((TBUtils.eqv(this.top, ((VComposition) other).top))
+        && (TBUtils.eqv(this.bottom, ((VComposition) other).bottom)))) {
       return false;
-    }
+    } // if
     return true;
-  }//eqv (TextBlock)
+  }// eqv (TextBlock)
 
 } // class VComposition
